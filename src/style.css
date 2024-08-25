@@ -56,17 +56,18 @@ h1 {
   display: flex;
 }
 .temp-icon {
-  font-size: 44px;
-  margin-top: 22px;
+  width: 86px;
+  height: 86px;
 }
 .temp-current {
   font-size: 88px;
   font-weight: bold;
+  line-height: 88px;
   margin-left: 10px;
 }
 .temp-deg {
-    margin-top: 16px;
-    font-size: 28px;
+  margin-top: 6px;
+  font-size: 28px;
 }
 footer {
   border-top: 1px solid #f4fffb;
