@@ -10,9 +10,10 @@ function updateWeather(response) {
   currentHumidity.innerHTML = `${response.data.temperature.humidity} %`;
   let currentSpeedWind = document.querySelector("#wind-speed");
   currentSpeedWind.innerHTML = `${response.data.wind.speed} km/h`;
-  let currentDay = document.querySelector("#time");
+  let currentTime = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
-  currentDay.innerHTML = formatDate(date);
+  console.log(response.data);
+  currentTime.innerHTML = formatDate(date);
   let icon = document.querySelector("#icon");
   icon.innerHTML = `<img
                 src="${response.data.condition.icon_url}"              
@@ -49,7 +50,6 @@ function searchCity(city) {
 function handleSearchSubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#form-input");
-
   searchCity(searchInput.value);
 }
 
