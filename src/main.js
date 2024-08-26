@@ -1,22 +1,28 @@
-function apdateWeather(response) {
+function updateWeather(response) {
   let currentTemperature = document.querySelector("#temp");
-  currentTemperature.innerHTML = Math.round(response.data.temperature.current);
+  let temp = response.data.temperature.current;
+  currentTemperature.innerHTML = Math.round(temp);
   let city = document.querySelector("#city");
   city.innerHTML = response.data.city;
   let currentDescription = document.querySelector("#description");
   currentDescription.innerHTML = response.data.condition.description;
   let currentHumidity = document.querySelector("#humidity");
-  currentHumidity.innerHTML = `${response.data.temperature.humidity}%`;
+  currentHumidity.innerHTML = `${response.data.temperature.humidity} %`;
   let currentSpeedWind = document.querySelector("#wind-speed");
-  currentSpeedWind.innerHTML = `${response.data.wind.speed}km/h`;
-  let currentDay = document.querySelector("#day");
+  currentSpeedWind.innerHTML = `${response.data.wind.speed} km/h`;
+  let currentDay = document.querySelector("#time");
   let date = new Date(response.data.time * 1000);
   currentDay.innerHTML = formatDate(date);
+  let icon = document.querySelector("#icon");
+  icon.innerHTML = `<img
+                src="${response.data.condition.icon_url}"              
+                class="temp-icon"/>
+              `;
 }
 
 function formatDate(date) {
-  let hours = date.getHours();
   let minutes = date.getMinutes();
+  let hours = date.getHours();
   let days = [
     "Sunday",
     "Monday",
@@ -37,7 +43,7 @@ function formatDate(date) {
 function searchCity(city) {
   let apiKey = "btf3a0c41c82o04bde5657e178c809b4";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(apdateWeather);
+  axios.get(apiUrl).then(updateWeather);
 }
 
 function handleSearchSubmit(event) {
